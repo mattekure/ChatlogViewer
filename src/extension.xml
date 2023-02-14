@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<root version="3.0">
+    <properties>
+        <name>Chatlog Explorer</name>
+        <version>1.0</version>
+        <author>mattekure</author>
+        <description>Adds a chatlog viewer</description>
+    </properties>
+    <announcement>
+        <text>Chatlog Explorer v1.0</text>
+        <font>systemfont</font>
+        <icon>Mattekure_Logo</icon>
+    </announcement>
+    <base>
+        <includefile source="chatlog_entry.xml" />
+        <includefile source="ChatlogExplorer.xml" />
+        <script name="ChatlogExplorer" file="ChatlogExplorer.lua" />
+        <icon name="icon-chatlog" file="wax-tablet.png" />
+        <icon name="Mattekure_Logo" file="Mattekure_Logo.png" />
+        <string name="sidebar_tooltip_chatlog">Open Chatlog Viewer</string>
+        <string name="Window_ChatlogExplorer_Title">Chatlog Explorer</string>
+        <string name="ChatlogExplorer_label_session_LabelCaption">Session</string>
+        <string name="ChatlogExplorer_button_refresh_Tooltip">Warning, this may take awhile if you have a large chatlog.</string>
+    </base>
+</root>

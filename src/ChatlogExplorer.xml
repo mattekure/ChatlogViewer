@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<root>
+  <windowclass name="ChatlogExplorer">
+    <frame>fieldlight</frame>
+    <placement>
+      <size height="300" width="300" />
+    </placement>
+    <sizelimits resize="both">
+      <minimum width="300" height="300" />
+      <dynamic />
+    </sizelimits>
+    <sheetdata>
+      <windowtitlebar name="title">
+        <resource>Window_ChatlogExplorer_Title</resource>
+      </windowtitlebar>
+      <combobox name="select_session">
+        <frame>
+          <name>fielddark</name>
+          <offset>8,0,8,0</offset>
+        </frame>
+        <bounds>68,60,-18,30</bounds>
+        <readonly />
+        <listdirection>down</listdirection>
+        <listmaxsize>10</listmaxsize>
+        <script>
+function onValueChanged()
+	sCurValue = getSelectedValue()
+	window.chatlog_list.closeAll()
+	local w = nil
+	local sColor = ""
+	local bLink = false
+	local sText = ""
+	for i, v in ipairs(ChatlogExplorer.tChatLogs) do
+		if ChatlogExplorer.tChatLogs[i][1] == sCurValue then
+			for x, y in ipairs(ChatlogExplorer.tChatLogs[i]) do
+				w = window.chatlog_list.createWindow()
+				sColor, bLink, sText = extractDetails(y)
+				w.chatlog_text.setValue(sText)
+				if bLink then
+					sColor = "FF0000FF"
+				end
+                if sColor == "" then
+                    sColor = "FFFFFFFF"
+                end
+				w.chatlog_text.setUnderline(bLink)
+				w.chatlog_text.setColor(sColor)
+				sColor = ""
+				bLink = false
+				sText = ""
+			end
+		end
+	end
+end
+
+
+function extractDetails(str)
+	local sColor = ""
+	local sText = ""
+    local sText2 = ""
+	local bLink = false
+	local sURL = ""
+	sColor = string.match(str, '&lt;font color="#+(%w+)')
+	sURL = string.match(str, '&lt;a href="([^&gt;]+)"&gt;')
+	if sURL then
+		bLink = true
+	end
+	if bLink then
+		sText = sURL
+	else
+		sText, sText2 = string.match(str, '[^&gt;]+&gt;(.+)&lt;/font&gt;(.*)')
+	end
+    if sText then
+	    sText = fixhtml(sText..sText2)
+    end
+	return sColor, bLink, sText
+end
+
+function fixhtml(str)
+	local sFixedString = "" 
+	if str then 
+		sFixedString = string.gsub(str, "&amp;#62;", "&gt;")
+		sFixedString = string.gsub(sFixedString, "&amp;#13;", "\r")
+		sFixedString = string.gsub(sFixedString, "&amp;#10;", "\n")
+		sFixedString = string.gsub(sFixedString, "&amp;#34;", '"')
+		sFixedString = string.gsub(sFixedString, "&amp;#35;", "#")
+		sFixedString = string.gsub(sFixedString, "&amp;#36;", "$")
+		sFixedString = string.gsub(sFixedString, "&amp;#37;", "%")
+		sFixedString = string.gsub(sFixedString, "&amp;#38;", "&amp;")
+		sFixedString = string.gsub(sFixedString, "&amp;#39;", "'")
+
+	end
+	return sFixedString
+end
+</script>
+      </combobox>
+      <stringcontrol name="label_session">
+        <bounds>10,60,50,30</bounds>
+        <static textres="ChatlogExplorer_label_session_LabelCaption" />
+        <readonly />
+      </stringcontrol>
+      <close name="button_close">
+        <bounds>-34,10,20,20</bounds>
+      </close>
+      <resize name="resize_window">
+        <bounds>-25,-25,20,20</bounds>
+      </resize>
+      <buttoncontrol name="button_refresh">
+        <bounds>10,10,20,20</bounds>
+        <tooltip textres="ChatlogExplorer_button_refresh_Tooltip" />
+        <icon normal="refresh" />
+        <font>button-white</font>
+        <script>
+function onClickRelease(button, x, y)
+	window.select_session.clear()
+	ChatlogExplorer.parseChatLogs()
+	for i,v in ipairs(ChatlogExplorer.tChatLogs) do
+		window.select_session.add(ChatlogExplorer.tChatLogs[i][1], ChatlogExplorer.tChatLogs[i][1], false)
+	end
+
+end
+
+</script>
+      </buttoncontrol>
+      <windowlist name="chatlog_list">
+        <bounds>10,90,-20,-30</bounds>
+        <class>chatlog_entry</class>
+      </windowlist>
+      <scrollbarcontrol name="ScrollBar1">
+        <frame>
+          <name>scrollbar_base</name>
+          <offset>0,12,0,12</offset>
+        </frame>
+        <bounds>-25,100,20,-42</bounds>
+        <target>chatlog_list</target>
+        <normal name="scrollbutton_normal">
+          <minimum height="scrollbutton_normal" />
+        </normal>
+      </scrollbarcontrol>
+    </sheetdata>
+  </windowclass>
+</root>
