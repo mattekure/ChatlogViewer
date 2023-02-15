@@ -25,6 +25,9 @@ function onTabletopInit()
 
         }
     );
+    if MenuManager then 
+        MenuManager.addMenuItem("ChatlogExplorer","","sidebar_tooltip_chatlog","Chatlog Explorer");
+    end
 end
 
 function parseChatLogs()
