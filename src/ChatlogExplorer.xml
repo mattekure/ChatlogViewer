@@ -21,6 +21,7 @@
         <bounds>68,60,-18,30</bounds>
         <readonly />
         <listdirection>down</listdirection>
+        <unsorted />
         <listmaxsize>10</listmaxsize>
         <script>
 function onValueChanged()

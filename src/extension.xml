@@ -2,12 +2,12 @@
 <root version="3.0">
     <properties>
         <name>Chatlog Explorer</name>
-        <version>1.0</version>
+        <version>1.1</version>
         <author>mattekure</author>
         <description>Adds a chatlog viewer</description>
     </properties>
     <announcement>
-        <text>Chatlog Explorer v1.0</text>
+        <text>Chatlog Explorer v1.1</text>
         <font>systemfont</font>
         <icon>Mattekure_Logo</icon>
     </announcement>
@@ -21,5 +21,11 @@
         <string name="Window_ChatlogExplorer_Title">Chatlog Explorer</string>
         <string name="ChatlogExplorer_label_session_LabelCaption">Session</string>
         <string name="ChatlogExplorer_button_refresh_Tooltip">Warning, this may take awhile if you have a large chatlog.</string>
+        <string name="option_header_chatlog">Chatlog</string>
+        <string name="option_label_CHATLOGDATEFORMAT">Date Format</string>
+        <string name="option_val_date1">Format 1</string>
+        <string name="option_val_date2">Format 2</string>
+        <string name="option_val_date3">Format 3</string>
+        <string name="option_val_date4">Format 4</string>
     </base>
 </root>
