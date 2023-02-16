@@ -2,12 +2,12 @@
 <root version="3.0">
     <properties>
         <name>Chatlog Explorer</name>
-        <version>1.2</version>
+        <version>1.3</version>
         <author>mattekure</author>
         <description>Adds a chatlog viewer</description>
     </properties>
     <announcement>
-        <text>Chatlog Explorer v1.2</text>
+        <text>Chatlog Explorer v1.3</text>
         <font>systemfont</font>
         <icon>Mattekure_Logo</icon>
     </announcement>

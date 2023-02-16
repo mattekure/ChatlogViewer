@@ -9,6 +9,7 @@
       <minimum width="300" height="300" />
       <dynamic />
     </sizelimits>
+    <backcolor>FFFFFFFF</backcolor>
     <sheetdata>
       <windowtitlebar name="title">
         <resource>Window_ChatlogExplorer_Title</resource>
@@ -109,6 +110,7 @@ end
         <bounds>10,10,20,20</bounds>
         <tooltip textres="ChatlogExplorer_button_refresh_Tooltip" />
         <icon normal="refresh" />
+        <color>FF000000</color>
         <font>button-white</font>
         <script>
 function onClickRelease(button, x, y)
@@ -125,6 +127,7 @@ end
       <windowlist name="chatlog_list">
         <bounds>10,90,-20,-30</bounds>
         <class>chatlog_entry</class>
+        <backcolor>FFFFFFFF</backcolor>
       </windowlist>
       <scrollbarcontrol name="ScrollBar1">
         <frame>
