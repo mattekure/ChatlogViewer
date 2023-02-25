@@ -9,6 +9,9 @@ function onTabletopInit()
             class = "ChatlogExplorer",
         }
         DesktopManager.registerSidebarToolButton(tButton, false)
+        if MenuManager then 
+            MenuManager.addMenuItem("ChatlogExplorer","","sidebar_tooltip_chatlog","Chatlog Explorer");
+        end
     end
     OptionsManager.registerOption2(
         "CHATLOGDATEFORMAT",
@@ -25,9 +28,7 @@ function onTabletopInit()
 
         }
     );
-    if MenuManager then 
-        MenuManager.addMenuItem("ChatlogExplorer","","sidebar_tooltip_chatlog","Chatlog Explorer");
-    end
+
 end
 
 function parseChatLogs()
