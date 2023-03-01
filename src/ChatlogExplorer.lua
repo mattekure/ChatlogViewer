@@ -9,8 +9,8 @@ function onTabletopInit()
             class = "ChatlogExplorer",
         }
         DesktopManager.registerSidebarToolButton(tButton, false)
-        if MenuManager then 
-            MenuManager.addMenuItem("ChatlogExplorer","","sidebar_tooltip_chatlog","Chatlog Explorer");
+        if MenuManager then
+            MenuManager.addMenuItem("ChatlogExplorer", "", "sidebar_tooltip_chatlog", "Chatlog Explorer");
         end
     end
     OptionsManager.registerOption2(
@@ -25,10 +25,8 @@ function onTabletopInit()
             baselabel = "option_val_date1",
             baseval = "date1",
             default = "date1"
-
         }
     );
-
 end
 
 function parseChatLogs()
@@ -50,7 +48,8 @@ function parseChatLogs()
         sMatch = string.match(v, "<b>Session started at ");
         if sMatch then
             nCurSession = nCurSession + 1;
-            nYear, nMonth, nDay, nHour, nMin =string.match(v, "Session started at (%d%d%d%d)%-(%d%d)%-(%d%d) / (%d%d):(%d%d)</b>$");
+            nYear, nMonth, nDay, nHour, nMin = string.match(v,
+                "Session started at (%d%d%d%d)%-(%d%d)%-(%d%d) / (%d%d):(%d%d)</b>$");
             sSessionDate = formatDate(nYear, nMonth, nDay, nHour, nMin)
             nLineNum = 1;
             tChatLogs[nCurSession] = {};
@@ -66,14 +65,14 @@ end
 function formatDate(nYear, nMonth, nDay, nHour, nMin)
     local sDateOption = OptionsManager.getOption("CHATLOGDATEFORMAT");
     if sDateOption == "date1" then
-        return tostring(nYear.."-"..nMonth.."-"..nDay.." "..nHour..":"..nMin)
+        return tostring(nYear .. "-" .. nMonth .. "-" .. nDay .. " " .. nHour .. ":" .. nMin)
     elseif sDateOption == "date2" then
-        return tostring(nMonth.."/"..nDay.."/"..nYear.." "..nHour..":"..nMin)
+        return tostring(nMonth .. "/" .. nDay .. "/" .. nYear .. " " .. nHour .. ":" .. nMin)
     elseif sDateOption == "date3" then
-        return tostring(nDay.."."..nMonth.."."..nYear.." "..nHour..":"..nMin)
+        return tostring(nDay .. "." .. nMonth .. "." .. nYear .. " " .. nHour .. ":" .. nMin)
     elseif sDateOption == "date4" then
-        return tostring(nDay.."-"..nMonth.."-"..nYear.." "..nHour..":"..nMin)
+        return tostring(nDay .. "-" .. nMonth .. "-" .. nYear .. " " .. nHour .. ":" .. nMin)
     else
-        return tostring(nYear..nMonth..nDay..nHour..nMin)
+        return tostring(nYear .. nMonth .. nDay .. nHour .. nMin)
     end
 end
