@@ -30,6 +30,7 @@ function onTabletopInit()
 end
 
 function parseChatLogs()
+    Debug.chat("parsing logs")
     local sCampaignFolder = File.getCampaignFolder();
     sChatLog = File.openTextFile(sCampaignFolder .. "chatlog.html");
 
@@ -75,4 +76,42 @@ function formatDate(nYear, nMonth, nDay, nHour, nMin)
     else
         return tostring(nYear .. nMonth .. nDay .. nHour .. nMin)
     end
+end
+
+function fixhtml(str)
+    local sFixedString = ""
+    if str then
+        sFixedString = string.gsub(str, "&amp;#62;", "&gt;")
+        sFixedString = string.gsub(sFixedString, "&amp;#13;", "\r")
+        sFixedString = string.gsub(sFixedString, "&amp;#10;", "\n")
+        sFixedString = string.gsub(sFixedString, "&amp;#34;", '"')
+        sFixedString = string.gsub(sFixedString, "&amp;#35;", "#")
+        sFixedString = string.gsub(sFixedString, "&amp;#36;", "$")
+        sFixedString = string.gsub(sFixedString, "&amp;#37;", "%")
+        sFixedString = string.gsub(sFixedString, "&amp;#38;", "&amp;")
+        sFixedString = string.gsub(sFixedString, "&amp;#39;", "'")
+    end
+    return sFixedString
+end
+
+function extractDetails(str)
+    local sColor = ""
+    local sText = ""
+    local sText2 = ""
+    local bLink = false
+    local sURL = ""
+    sColor = string.match(str, '&lt;font color="#+(%w+)')
+    sURL = string.match(str, '&lt;a href="([^>]+)">')
+    if sURL then
+        bLink = true
+    end
+    if bLink then
+        sText = sURL
+    else
+        sText, sText2 = string.match(str, '[^>]+>(.+)&lt;/font>(.*)')
+    end
+    if sText then
+        sText = fixhtml(sText .. sText2)
+    end
+    return sColor, bLink, sText
 end
