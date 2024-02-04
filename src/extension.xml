@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root version="3.0">
     <properties>
-        <name>Chatlog Explorer</name>
+        <name>Feature: Chatlog Explorer</name>
         <version>1.5</version>
         <author>mattekure</author>
         <description>Adds a chatlog viewer</description>
