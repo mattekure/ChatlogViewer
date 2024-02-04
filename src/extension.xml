@@ -23,9 +23,9 @@
         <string name="ChatlogExplorer_button_refresh_Tooltip">Warning, this may take awhile if you have a large chatlog.</string>
         <string name="option_header_chatlog">Chatlog</string>
         <string name="option_label_CHATLOGDATEFORMAT">Date Format</string>
-        <string name="option_val_date1">Format 1</string>
-        <string name="option_val_date2">Format 2</string>
-        <string name="option_val_date3">Format 3</string>
-        <string name="option_val_date4">Format 4</string>
+        <string name="option_val_date1">YYYY-MM-DD</string>
+        <string name="option_val_date2">MM/DD/YYYY</string>
+        <string name="option_val_date3">DD.MM.YYYY</string>
+        <string name="option_val_date4">DD-MM-YYYY</string>
     </base>
 </root>
