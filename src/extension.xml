@@ -12,7 +12,6 @@
         <icon>Mattekure_Logo</icon>
     </announcement>
     <base>
-        <includefile source="chatlog_entry.xml"/>
         <includefile source="ChatlogExplorer.xml"/>
         <script file="ChatlogExplorer.lua" name="ChatlogExplorer"/>
         <icon file="wax-tablet.png" name="icon-chatlog"/>
