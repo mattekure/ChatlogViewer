@@ -26,5 +26,6 @@
         <string name="option_val_date2">MM/DD/YYYY</string>
         <string name="option_val_date3">DD.MM.YYYY</string>
         <string name="option_val_date4">DD-MM-YYYY</string>
+        <string name="ChatlogExplorer_window_title">Chatlog Explorer</string>
     </base>
 </root>

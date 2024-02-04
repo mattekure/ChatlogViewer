@@ -1,4 +1,3 @@
-local sChatLog = "";
 tChatLogs = {};
 
 function onTabletopInit()
@@ -30,9 +29,8 @@ function onTabletopInit()
 end
 
 function parseChatLogs()
-    Debug.chat("parsing logs")
     local sCampaignFolder = File.getCampaignFolder();
-    sChatLog = File.openTextFile(sCampaignFolder .. "chatlog.html");
+    local sChatLog = File.openTextFile(sCampaignFolder .. "chatlog.html");
 
     local tLines = {};
     sChatLog = string.gsub(sChatLog, "<br />", "");
@@ -100,15 +98,15 @@ function extractDetails(str)
     local sText2 = ""
     local bLink = false
     local sURL = ""
-    sColor = string.match(str, '&lt;font color="#+(%w+)')
-    sURL = string.match(str, '&lt;a href="([^>]+)">')
+    sColor = string.match(str, '<font color="#+(%w+)')
+    sURL = string.match(str, '<a href="([^>]+)">')
     if sURL then
         bLink = true
     end
     if bLink then
         sText = sURL
     else
-        sText, sText2 = string.match(str, '[^>]+>(.+)&lt;/font>(.*)')
+        sText, sText2 = string.match(str, '[^>]+>(.+)</font>(.*)')
     end
     if sText then
         sText = fixhtml(sText .. sText2)
