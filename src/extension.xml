@@ -2,30 +2,19 @@
 <root version="3.0">
     <properties>
         <name>Feature: Chatlog Explorer</name>
-        <version>1.5</version>
+        <version>1.6</version>
         <author>mattekure</author>
         <description>Adds a chatlog viewer</description>
     </properties>
     <announcement>
-        <text>Chatlog Explorer v1.5\rCreated by mattekure</text>
+        <text>Chatlog Explorer v1.6\rCreated by mattekure 2025-10-18</text>
         <font>systemfont</font>
         <icon>Mattekure_Logo</icon>
     </announcement>
     <base>
-        <includefile source="ChatlogExplorer.xml"/>
-        <script file="ChatlogExplorer.lua" name="ChatlogExplorer"/>
-        <icon file="wax-tablet.png" name="icon-chatlog"/>
-        <icon file="Mattekure_Logo.png" name="Mattekure_Logo"/>
-        <string name="sidebar_tooltip_chatlog">Open Chatlog Viewer</string>
-        <string name="Window_ChatlogExplorer_Title">Chatlog Explorer</string>
-        <string name="ChatlogExplorer_label_session_LabelCaption">Session</string>
-        <string name="ChatlogExplorer_button_refresh_Tooltip">Warning, this may take awhile if you have a large chatlog.</string>
-        <string name="option_header_chatlog">Chatlog</string>
-        <string name="option_label_CHATLOGDATEFORMAT">Date Format</string>
-        <string name="option_val_date1">YYYY-MM-DD</string>
-        <string name="option_val_date2">MM/DD/YYYY</string>
-        <string name="option_val_date3">DD.MM.YYYY</string>
-        <string name="option_val_date4">DD-MM-YYYY</string>
-        <string name="ChatlogExplorer_window_title">Chatlog Explorer</string>
+        <includefile source="utility/ChatlogExplorer.xml" />
+        <includefile source="graphics/graphics.xml" />
+        <includefile source="strings/strings.xml" />
+        <script file="scripts/ChatlogExplorer.lua" name="ChatlogExplorer" />
     </base>
 </root>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <icon file="graphics/wax-tablet.png" name="icon-chatlog" />
+    <icon file="graphics/Mattekure_Logo.png" name="Mattekure_Logo" />
+    <icon file="graphics/clockwise-rotation.png" name="button_chatlogrefresh" />
+</root>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <string name="sidebar_tooltip_chatlog">Open Chatlog Viewer</string>
+    <string name="Window_ChatlogExplorer_Title">Chatlog Explorer</string>
+    <string name="ChatlogExplorer_label_session_LabelCaption">Session</string>
+    <string name="ChatlogExplorer_button_refresh_Tooltip">Warning, this may take awhile if you have a large chatlog.</string>
+    <string name="option_header_chatlog">Chatlog Explorer</string>
+    <string name="option_label_CHATLOGDATEFORMAT">Date Format</string>
+    <string name="option_val_date1">YYYY-MM-DD</string>
+    <string name="option_val_date2">MM/DD/YYYY</string>
+    <string name="option_val_date3">DD.MM.YYYY</string>
+    <string name="option_val_date4">DD-MM-YYYY</string>
+    <string name="ChatlogExplorer_window_title">Chatlog Explorer</string>
+</root>
