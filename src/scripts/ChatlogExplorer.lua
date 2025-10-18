@@ -1,15 +1,15 @@
-tChatLogs = {};
+tChatLogs = {}
 
 function onTabletopInit()
     if Session.IsHost then
         local tButton = {
             sIcon = "icon-chatlog",
             tooltipres = "sidebar_tooltip_chatlog",
-            class = "ChatlogExplorer",
+            class = "ChatlogExplorer"
         }
         DesktopManager.registerSidebarToolButton(tButton, false)
         if MenuManager then
-            MenuManager.addMenuItem("ChatlogExplorer", "", "sidebar_tooltip_chatlog", "Chatlog Explorer");
+            MenuManager.addMenuItem("ChatlogExplorer", "", "sidebar_tooltip_chatlog", "Chatlog Explorer")
         end
     end
     OptionsManager.registerOption2(
@@ -25,44 +25,42 @@ function onTabletopInit()
             baseval = "date1",
             default = "date1"
         }
-    );
+    )
 end
 
 function parseChatLogs()
-    local sCampaignFolder = File.getCampaignFolder();
-    local sChatLog = File.openTextFile(sCampaignFolder .. "chatlog.html");
+    local sCampaignFolder = File.getCampaignFolder()
+    local sChatLog = File.openTextFile(sCampaignFolder .. "chatlog.html")
 
-    local tLines = {};
-    sChatLog = string.gsub(sChatLog, "<br />", "");
+    local tLines = {}
+    sChatLog = string.gsub(sChatLog, "<br />", "")
     for s in sChatLog:gmatch("[^\r\n]+") do
         if string.len(s) > 0 then
-            table.insert(tLines, s);
+            table.insert(tLines, s)
         end
     end
-    local sMatch = nil;
-    local nCurSession = 0;
-    local sSessionDate = "";
+    local sMatch
+    local nCurSession = 0
+    --  local sSessionDate
     for _, v in ipairs(tLines) do
-        sMatch = nil;
-        sMatch = string.match(v, "<b>Session started at ");
+        sMatch = nil
+        sMatch = string.match(v, "<b>Session started at ")
         if sMatch then
-            nCurSession = nCurSession + 1;
-            nYear, nMonth, nDay, nHour, nMin = string.match(v,
-                "Session started at (%d%d%d%d)%-(%d%d)%-(%d%d) / (%d%d):(%d%d)</b>$");
-            sSessionDate = formatDate(nYear, nMonth, nDay, nHour, nMin)
-            nLineNum = 1;
-            tChatLogs[nCurSession] = {};
-            table.insert(tChatLogs[nCurSession], sSessionDate);
+            nCurSession = nCurSession + 1
+            local nYear, nMonth, nDay, nHour, nMin = string.match(v, "Session started at (%d%d%d%d)%-(%d%d)%-(%d%d) / (%d%d):(%d%d)</b>$")
+            local sSessionDate = formatDate(nYear, nMonth, nDay, nHour, nMin)
+            tChatLogs[nCurSession] = {}
+            table.insert(tChatLogs[nCurSession], sSessionDate)
         else
             if tChatLogs[nCurSession] then
-                table.insert(tChatLogs[nCurSession], v);
+                table.insert(tChatLogs[nCurSession], v)
             end
         end
     end
 end
 
 function formatDate(nYear, nMonth, nDay, nHour, nMin)
-    local sDateOption = OptionsManager.getOption("CHATLOGDATEFORMAT");
+    local sDateOption = OptionsManager.getOption("CHATLOGDATEFORMAT")
     if sDateOption == "date1" then
         return tostring(nYear .. "-" .. nMonth .. "-" .. nDay .. " " .. nHour .. ":" .. nMin)
     elseif sDateOption == "date2" then
@@ -93,20 +91,18 @@ function fixhtml(str)
 end
 
 function extractDetails(str)
-    local sColor = ""
-    local sText = ""
+    local sText
     local sText2 = ""
     local bLink = false
-    local sURL = ""
-    sColor = string.match(str, '<font color="#+(%w+)')
-    sURL = string.match(str, '<a href="([^>]+)">')
+    local sColor = string.match(str, '<font color="#+(%w+)')
+    local sURL = string.match(str, '<a href="([^>]+)">')
     if sURL then
         bLink = true
     end
     if bLink then
         sText = sURL
     else
-        sText, sText2 = string.match(str, '[^>]+>(.+)</font>(.*)')
+        sText, sText2 = string.match(str, "[^>]+>(.+)</font>(.*)")
     end
     if sText then
         sText = fixhtml(sText .. sText2)
